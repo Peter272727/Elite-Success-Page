@@ -3,20 +3,39 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Elite Circle Payment Success</title>
-</head>
-<body style="font-family: Arial, sans-serif; text-align: center; margin-top: 100px;">
-  <h1>✅ Payment Successful!</h1>
-  <p>Your Private ID is: <span id="reference"></span></p>
-  <p>Copy this ID and send it to the Elite Circle WhatsApp bot to get access.</p>
-
-  <script>
-    // Get Paystack transaction reference from the URL
-    const urlParams = new URLSearchParams(window.location.search);
-    const ref = urlParams.get('reference');
-
-    // Show the reference ID
-    document.getElementById("reference").innerText = ref ? ref : "No ID found";
-  </script>
-</body>
-</html>
+  <title>Payment Successful | Elite Circle</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f7fa;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .container {
+      background: white;
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+      text-align: center;
+      max-width: 400px;
+      width: 100%;
+    }
+    .checkmark {
+      font-size: 60px;
+      color: #4CAF50;
+      margin-bottom: 20px;
+    }
+    h1 {
+      color: #333;
+      margin-bottom: 10px;
+    }
+    p {
+      color: #666;
+      margin-bottom: 20px;
+    }
+    .private-id {
+      backgrou
