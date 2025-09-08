@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Payment Successful</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: black;
+      color: gold;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+    }
+    h1 {
+      font-size: 32px;
+      margin-bottom: 20px;
+    }
+    p {
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+    .id-box {
+      border: 2px solid gold;
+      padding: 15px 25px;
+      border-radius: 10px;
+      font-weight: bold;
+      font-size: 20px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🎉 Payment Successful 🎉</h1>
+  <p>Welcome to the <strong>Elite Circle</strong>.</p>
+  <p>Your Private Elite ID:</p>
+  <div class="id-box" id="elite-id">Loading...</div>
+
+  <script>
+    // Grab the reference (ref) from the URL
+    const params = new URLSearchParams(window.location.search);
+    const ref = params.get("ref");
+
+    // Show it as the user's private Elite ID
+    document.getElementById("elite-id").innerText = ref ? ref : "Not Found";
+  </script>
+
+</body>
+</html>
