@@ -70,9 +70,17 @@
     <a id="whatsappBtn" class="btn" href="#" target="_blank">Message the Elite Bot</a>
   </div>
 
-  <script>
-    // Generate unique ID (placeholder, later connect Paystack)
-    const id = "EC-" + Math.floor(Math.random() * 1000000000);
+ <script>
+  // Get Paystack transaction ID from URL
+  const urlParams = new URLSearchParams(window.location.search);
+  const id = urlParams.get("id");
+
+  // If there's no ID in the URL, show error
+  if (!id) {
+    document.getElementById("privateId").textContent = "ERROR: No ID found!";
+    document.getElementById("whatsappBtn").style.display = "none";
+  } else {
+    // Display the Paystack ID
     document.getElementById("privateId").textContent = id;
 
     // WhatsApp button link
@@ -80,6 +88,7 @@
     const text = `Hi, my Elite VIP ID is ${id}`;
     document.getElementById("whatsappBtn").href =
       `https://wa.me/${number}?text=${encodeURIComponent(text)}`;
-  </script>
+  }
+</script>
 </body>
 </html>
