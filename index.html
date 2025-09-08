@@ -1,94 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Elite Circle - Success</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Payment Successful</title>
   <style>
     body {
-      margin: 0;
       font-family: Arial, sans-serif;
-      background: linear-gradient(135deg, #0d0d0d, #1a1a1a);
-      color: #fff;
-      text-align: center;
+      background-color: black;
+      color: gold;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       height: 100vh;
-    }
-    .card {
-      background: #111;
-      padding: 40px;
-      border-radius: 20px;
-      box-shadow: 0 0 25px rgba(255,215,0,0.2);
-      max-width: 420px;
-    }
-    .checkmark {
-      font-size: 60px;
-      color: #FFD700; /* Gold */
+      text-align: center;
     }
     h1 {
-      margin: 20px 0 10px;
-      color: #FFD700;
+      font-size: 32px;
+      margin-bottom: 20px;
+    }
+    p {
+      font-size: 18px;
+      margin-bottom: 10px;
     }
     .id-box {
-      background: #1c1c1c;
-      border: 1px solid #FFD700;
-      padding: 15px;
-      border-radius: 10px;
-      margin: 20px 0;
-      font-size: 18px;
-      font-weight: bold;
-      color: #FFD700;
-    }
-    .btn {
-      background: #FFD700;
-      color: #000;
-      text-decoration: none;
+      border: 2px solid gold;
       padding: 15px 25px;
       border-radius: 10px;
-      font-size: 18px;
       font-weight: bold;
-      display: inline-block;
+      font-size: 20px;
       margin-top: 20px;
-      transition: 0.3s;
-    }
-    .btn:hover {
-      background: #e6c200;
     }
   </style>
 </head>
 <body>
-  <div class="card">
-    <div class="checkmark">✔</div>
-    <h1>Payment Successful</h1>
-    <p>Welcome to the Elite Circle!</p>
-    <div class="id-box">
-      Your Private ID: <span id="privateId"></span>
-    </div>
-    <a id="whatsappBtn" class="btn" href="#" target="_blank">Message the Elite Bot</a>
-  </div>
 
- <script>
-  // Get Paystack transaction ID from URL
-  const urlParams = new URLSearchParams(window.location.search);
-  const id = urlParams.get("id");
+  <h1>🎉 Payment Successful 🎉</h1>
+  <p>Welcome to the <strong>Elite Circle</strong>.</p>
+  <p>Your Private Elite ID:</p>
+  <div class="id-box" id="elite-id">Loading...</div>
 
-  // If there's no ID in the URL, show error
-  if (!id) {
-    document.getElementById("privateId").textContent = "ERROR: No ID found!";
-    document.getElementById("whatsappBtn").style.display = "none";
-  } else {
-    // Display the Paystack ID
-    document.getElementById("privateId").textContent = id;
+  <script>
+    // Grab the reference (ref) from the URL
+    const params = new URLSearchParams(window.location.search);
+    const ref = params.get("ref");
 
-    // WhatsApp button link
-    const number = "234XXXXXXXXXX"; // Replace with Elite Bot number
-    const text = `Hi, my Elite VIP ID is ${id}`;
-    document.getElementById("whatsappBtn").href =
-      `https://wa.me/${number}?text=${encodeURIComponent(text)}`;
-  }
-</script>
+    // Show it as the user's private Elite ID
+    document.getElementById("elite-id").innerText = ref ? ref : "Not Found";
+  </script>
+
 </body>
 </html>
