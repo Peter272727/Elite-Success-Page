@@ -3,51 +3,119 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Payment Successful</title>
+  <title>Elite Circle Plans</title>
+  <script src="https://js.paystack.co/v1/inline.js"></script>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background-color: black;
-      color: gold;
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #000;
+      color: #FFD700;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      height: 100vh;
-      text-align: center;
+      min-height: 100vh;
     }
     h1 {
-      font-size: 32px;
-      margin-bottom: 20px;
+      font-size: 36px;
+      margin-bottom: 40px;
+      text-shadow: 0 0 15px rgba(255, 215, 0, 0.8);
     }
-    p {
-      font-size: 18px;
-      margin-bottom: 10px;
+    .plan-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 25px;
+      width: 90%;
+      max-width: 1100px;
     }
-    .id-box {
-      border: 2px solid gold;
-      padding: 15px 25px;
-      border-radius: 10px;
+    .plan {
+      background: rgba(20, 20, 20, 0.95);
+      border: 2px solid #FFD700;
+      border-radius: 15px;
+      padding: 25px;
+      text-align: center;
+      box-shadow: 0 0 25px rgba(255, 215, 0, 0.4);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .plan:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 40px rgba(255, 215, 0, 0.8);
+    }
+    .plan h2 {
+      margin: 15px 0;
+      font-size: 24px;
+    }
+    .plan p {
+      font-size: 16px;
+      margin: 8px 0;
+    }
+    button {
+      background: #FFD700;
+      color: #000;
       font-weight: bold;
-      font-size: 20px;
-      margin-top: 20px;
+      font-size: 16px;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 15px;
+      box-shadow: 0 0 12px rgba(255, 215, 0, 0.6);
+      transition: background 0.3s ease, box-shadow 0.3s ease;
+    }
+    button:hover {
+      background: #e6c200;
+      box-shadow: 0 0 20px rgba(255, 215, 0, 0.9);
     }
   </style>
 </head>
 <body>
 
-  <h1>Payment Successful</h1>
-  <p>Welcome to the <strong>Elite Circle</strong>.</p>
-  <p>Your Elite ID:</p>
-  <div class="id-box" id="elite-id">Loading...</div>
+  <h1>Choose Your Elite Circle Plan</h1>
+
+  <div class="plan-container">
+    <div class="plan">
+      <h2>Monthly Plan (Baseline)</h2>
+      <p>₦150,000 / month</p>
+      <button onclick="payWithPaystack('PLN_h81ber8x72pzi3f')">Subscribe</button>
+    </div>
+
+    <div class="plan">
+      <h2>Quarterly Plan</h2>
+      <p>₦405,000 / 3 months<br>(₦135,000/month) → 10% OFF</p>
+      <button onclick="payWithPaystack('PLN_1nz3oaek85dpiiw')">Subscribe</button>
+    </div>
+
+    <div class="plan">
+      <h2>Bi-Annual Plan</h2>
+      <p>₦720,000 / 6 months<br>(₦120,000/month) → 20% OFF</p>
+      <button onclick="payWithPaystack('PLN_mko6fvum9hmme74')">Subscribe</button>
+    </div>
+
+    <div class="plan">
+      <h2>Annual Plan</h2>
+      <p>₦1,200,000 / year<br>(₦100,000/month) → 33% OFF</p>
+      <button onclick="payWithPaystack('PLN_yp7c7jg91sjp9ow')">Subscribe</button>
+    </div>
+  </div>
 
   <script>
-    // Grab the reference (ref) from the URL
-    const params = new URLSearchParams(window.location.search);
-    const ref = params.get("ref");
-
-    // Show it as the user's private Elite ID
-    document.getElementById("elite-id").innerText = ref ? ref : "Not Found";
+    function payWithPaystack(planCode) {
+      var handler = PaystackPop.setup({
+        key: 'pk_live_94971afca6e4b5c7a9452e021894b87d25416f92',
+        email: prompt("Enter your email address"),
+        plan: planCode,
+        ref: ''+Math.floor((Math.random() * 1000000000) + 1),
+        callback: function(response) {
+          window.location.href = "https://peter272727.github.io/Elite-Success-Page/success.html?ref=" + response.reference;
+        },
+        onClose: function() {
+          alert('Transaction was not completed, window closed.');
+        }
+      });
+      handler.openIframe();
+    }
   </script>
+
 </body>
 </html>
