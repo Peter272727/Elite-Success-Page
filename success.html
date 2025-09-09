@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Payment Successful</title>
+  <title>Successful</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      background-color: black;
+      background: radial-gradient(circle at center, rgba(255, 215, 0, 0.08) 0%, rgba(0, 0, 0, 0.95) 100%);
       color: gold;
       display: flex;
       flex-direction: column;
@@ -16,9 +16,15 @@
       height: 100vh;
       text-align: center;
     }
+    .icon {
+      font-size: 60px;
+      color: gold;
+      margin-bottom: 20px;
+    }
     h1 {
       font-size: 32px;
-      margin-bottom: 20px;
+      margin-bottom: 15px;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
     }
     p {
       font-size: 18px;
@@ -31,22 +37,21 @@
       font-weight: bold;
       font-size: 20px;
       margin-top: 20px;
+      box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
     }
   </style>
 </head>
 <body>
 
-  <h1>🎉 Payment Successful 🎉</h1>
+  <div class="icon">✔</div>
+  <h1>Successful</h1>
   <p>Welcome to the <strong>Elite Circle</strong>.</p>
-  <p>Your Private Elite ID:</p>
+  <p>Your Elite ID:</p>
   <div class="id-box" id="elite-id">Loading...</div>
 
   <script>
-    // Grab the reference (ref) from the URL
     const params = new URLSearchParams(window.location.search);
     const ref = params.get("ref");
-
-    // Show it as the user's private Elite ID
     document.getElementById("elite-id").innerText = ref ? ref : "Not Found";
   </script>
 
