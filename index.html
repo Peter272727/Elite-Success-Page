@@ -8,46 +8,40 @@
   <style>
     body {
       margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: #000;
-      color: #FFD700;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: radial-gradient(circle at center, rgba(255, 215, 0, 0.08) 0%, rgba(0, 0, 0, 0.95) 100%);
+      color: gold;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: flex-start;
+      justify-content: center;
       min-height: 100vh;
-      padding: 40px 20px;
     }
     h1 {
-      font-size: 36px;
+      font-size: 34px;
       margin-bottom: 40px;
-      text-align: center;
-      text-shadow: 0 0 15px rgba(255, 215, 0, 0.8);
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
     }
     .plan-container {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 30px;
-      width: 100%;
-      max-width: 1200px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 25px;
+      width: 90%;
+      max-width: 1100px;
     }
     .plan {
-      cursor: pointer;
-      background: rgba(20, 20, 20, 0.95);
-      border: 2px solid #FFD700;
+      border: 2px solid gold;
       border-radius: 15px;
-      padding: 40px 30px;
+      padding: 25px;
       text-align: center;
-      box-shadow: 0 0 25px rgba(255, 215, 0, 0.4);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      min-width: 260px;
-      max-width: 300px;
-      flex: 1;
+      box-shadow: 0 0 20px rgba(255, 215, 0, 0.25);
+      background: rgba(0, 0, 0, 0.7);
+      cursor: pointer;
+      transition: all 0.3s ease;
     }
     .plan:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 0 40px rgba(255, 215, 0, 0.9);
+      transform: translateY(-6px);
+      box-shadow: 0 0 30px rgba(255, 215, 0, 0.6);
     }
     .plan h2 {
       margin: 10px 0;
@@ -66,7 +60,27 @@
   <div class="plan-container">
     <div class="plan" onclick="payWithPaystack('PLN_i6h7dgqxmcjos83')">
       <h2>Test Plan</h2>
-      <p>₦100 / test</p>
+      <p>₦100 / test transaction</p>
+    </div>
+
+    <div class="plan" onclick="payWithPaystack('PLN_h81ber8x72pzi3f')">
+      <h2>Monthly Plan (Baseline)</h2>
+      <p>₦150,000 / month</p>
+    </div>
+
+    <div class="plan" onclick="payWithPaystack('PLN_1nz3oaek85dpiiw')">
+      <h2>Quarterly Plan</h2>
+      <p>₦405,000 / 3 months<br>(₦135,000/month) → 10% OFF</p>
+    </div>
+
+    <div class="plan" onclick="payWithPaystack('PLN_mko6fvum9hmme74')">
+      <h2>Bi-Annual Plan</h2>
+      <p>₦720,000 / 6 months<br>(₦120,000/month) → 20% OFF</p>
+    </div>
+
+    <div class="plan" onclick="payWithPaystack('PLN_yp7c7jg91sjp9ow')">
+      <h2>Annual Plan</h2>
+      <p>₦1,200,000 / year<br>(₦100,000/month) → 33% OFF</p>
     </div>
   </div>
 
@@ -74,6 +88,7 @@
     function payWithPaystack(planCode) {
       var handler = PaystackPop.setup({
         key: 'pk_live_94971afca6e4b5c7a9452e021894b87d25416f92',
+        email: prompt("Enter your email address"),
         plan: planCode,
         ref: ''+Math.floor((Math.random() * 1000000000) + 1),
         callback: function(response) {
