@@ -75,7 +75,7 @@
 
   <div class="plan-container">
     <div class="plan">
-      <h2>Monthly Plan (Baseline)</h2>
+      <h2>Monthly Plan</h2>
       <p>₦150,000 / month</p>
       <button onclick="payWithPaystack('PLN_h81ber8x72pzi3f')">Subscribe</button>
     </div>
@@ -103,7 +103,6 @@
     function payWithPaystack(planCode) {
       var handler = PaystackPop.setup({
         key: 'pk_live_94971afca6e4b5c7a9452e021894b87d25416f92',
-        email: prompt("Enter your email address"),
         plan: planCode,
         ref: ''+Math.floor((Math.random() * 1000000000) + 1),
         callback: function(response) {
